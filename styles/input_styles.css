@@ -1,0 +1,152 @@
+
+.mainPage{
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+
+    position: relative;
+    left: 5%;
+    top: 10%;
+    height: 80%;
+    width: 90%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+    font-size: max(0.9vmax, 12px);
+
+    text-align: center;
+
+    input[type=submit]{
+        width: 100px;
+    }
+
+    input[type=date]{
+        width: 40%;
+    }
+
+    input[type=submit]:active, button:active{
+        background-color: rgba(0, 0, 0, 0.425);
+    }
+
+    input, button, select, textarea{
+        background-color: rgba(34, 29, 29, 0.425);
+
+        border-color: rgba(34, 29, 29, 0.425);;
+        border-radius: 15px;
+        padding: 10px;
+        border-style: solid;
+    
+        font-family: 'Franklin Gothic Medium';
+        color: aliceblue;
+    }
+
+    input[type=text]:focus, input[type=password]:focus{
+        outline: 2px solid orange;
+    }
+}
+
+.logBrowserPanel{
+    margin: 0;
+    padding: 5px;
+
+    background-color: rgba(31, 28, 28, 0.425);
+    border-radius: 15px;
+}
+
+.logBrowserLeftColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: max(40%, 200px);
+
+}
+
+.userInfoPanel{
+    height: 25%;
+}
+
+.insertLogPanel{
+    width: 100%;
+    height: 45%;
+    
+    min-height: 400px;
+    /* min-width: 400px; */
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    select{
+        width: calc(40% + 25px);
+        text-align: center;
+    }
+
+
+    input{
+        width: 45%;
+        text-align: center;
+    }
+
+    input:focus, select:focus, textarea:focus{
+        outline: 2px solid orange;
+    }
+
+    button{
+        align-self: flex-end;
+        font-size: max(1vmax, 12px);
+        width: max(30%, 100px);
+    }
+}
+
+.logBrowserRightColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: max(50%, 200px);
+
+}
+
+.inputField{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    display: flex;
+    direction: row;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+.insertLogForm{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 15px;
+}
+
+.logDescriptionInput{
+    resize: none;
+    width: 40%;
+    min-height: 40%;
+}
+
+.logButtonPanel{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    button{
+        width: max(15%, 70px);
+        font-size: max(10px, 1.25vmin);
+    }
+}
+
+.returnButton{
+    height: 50px;
+    width: 100px;
+    align-self: center;
+}

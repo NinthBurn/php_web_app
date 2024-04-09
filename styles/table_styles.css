@@ -1,0 +1,34 @@
+.logTable{
+    width: 100%;
+    background-color: rgba(31, 28, 28, 0.425);
+
+    border: 1px solid;
+    border-color: rgba(31, 28, 28, 0.425);
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+th{
+    background-color: rgba(10, 10, 10, 0.425);
+    border: 1px solid;
+    border-color: rgba(31, 28, 28, 0.425);
+
+}
+
+td{
+    text-align: center;
+    border: 1px solid;
+    max-width: 400px;
+    border-color: rgba(31, 28, 28, 0.425);
+}
+
+tr{
+    border: 1px solid;
+    border-color: rgba(31, 28, 28, 0.425);
+    height: 9vh;
+    width: 100%;
+}
+
+tr:hover{
+    background-color: rgba(66, 61, 61, 0.425);
+}
