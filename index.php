@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-require "user_authentification.php";
-require "script.php";
+require "server/user_authentification.php";
+require "scripts/script.php";
 
 if (isset($_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
@@ -20,8 +20,8 @@ if (isset($_SESSION["user_id"])) {
     Header("Location: login_page.php");
 }
 
-require "pagination_scripts.php";
-require "log_operations.php";
+require "scripts/pagination_scripts.php";
+require "scripts/log_operations.php";
 ?>
 
 <html>
@@ -34,9 +34,9 @@ require "log_operations.php";
 
 <body>
     <div class="mainPage">
-        <?php include("left_column.php");?>
+        <?php include("index_components/left_column.php");?>
         
-        <?php include("right_column.php");?>
+        <?php include("index_components/right_column.php");?>
         <script defer>
             initialPageLoad();
         </script>

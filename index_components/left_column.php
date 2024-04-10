@@ -3,7 +3,7 @@
         <h2>Log Browser Page</h2>
 
         <p>Hello <?php echo $user_name; ?>!</p>
-        <a href="logout.php">Log out</a>
+        <a href="../server/logout.php">Log out</a>
     </div>
 
     <div class="logBrowserPanel insertLogPanel">

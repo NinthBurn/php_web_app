@@ -64,7 +64,7 @@ function loadPage(page){
         };
 
         $.ajax({
-            url: 'fetch_page.php',
+            url: '../server/fetch_page.php',
             type: 'post',
             data: data,
             success: function(response){

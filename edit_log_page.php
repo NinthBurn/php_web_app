@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 session_start();
-require "script.php";
+require "scripts/script.php";
+require "scripts/log_operations.php";
 $connection = new mysqli("localhost", "root", "", "lab7") or die("Connection failed:" . mysqli_connect_error());
 
 $id = $_GET['log_id'];

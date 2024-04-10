@@ -12,7 +12,7 @@ function submitData(){
         };
         
         $.ajax({
-            url: 'user_authentification.php',
+            url: '../server/user_authentification.php',
             type: 'post',
             data: data,
             success: function(response){

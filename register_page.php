@@ -1,5 +1,5 @@
 <?php 
-require "user_authentification.php";
+require "server/user_authentification.php";
 if(isset($_SESSION["user_id"])){
     header("Location: index.php");
 }
@@ -45,6 +45,6 @@ if(isset($_SESSION["user_id"])){
             
         </div>
     </div>
-    <?php require "script.php"?>
+    <?php require "scripts/script.php"?>
 </body>
 </html>

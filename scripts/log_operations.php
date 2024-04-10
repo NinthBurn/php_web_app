@@ -13,21 +13,16 @@ function submitLogData(user_id){
         };
         
         $.ajax({
-            url: 'log_registration.php',
+            url: '../server/log_registration.php',
             type: 'post',
             data: data,
             success: function(response){
                 response = response.replace(/(\r\n|\n|\r)/gm, "");
 
-                if(response == "Successfully logged in!"){
-                    location.reload(true);
-                
-                }else if(response == "User registered successfully."){
-                    window.location.replace("login_page.php");
-                
-                }else $(".responseLabel").html(response);
-
-                
+                if(response == "Log successfully registered."){
+                    $(".responseLabel").html(response);
+                    loadPage($("#currentPageIndex").html());
+                }
             }
         })
     });
@@ -40,7 +35,7 @@ function deleteLog(identifier){
         };
         
         $.ajax({
-            url: 'log_deletion.php',
+            url: '../server/log_deletion.php',
             type: 'post',
             data: data,
             success: function(response){
@@ -62,7 +57,7 @@ function updateLog(identifier){
         };
         
         $.ajax({
-            url: 'log_update.php',
+            url: '../server/log_update.php',
             type: 'post',
             data: data,
             success: function(response){
