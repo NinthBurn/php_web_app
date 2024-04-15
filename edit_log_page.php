@@ -16,7 +16,10 @@ $row = $query_result->fetch_assoc();
 mysqli_close($connection);
 
 if(!$row)
-    header("Location: index.php")
+echo '<script>
+window.location.href="index.php";
+alert("Cannot edit a log that was not uploaded by you.");
+</script>';
 ?>
 
 <head>

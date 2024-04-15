@@ -39,7 +39,9 @@ function deleteLog(identifier){
             type: 'post',
             data: data,
             success: function(response){
+                $(".responseLabel").html(response)
                 loadPage($("#currentPageIndex").html());
+
             }
         })
     });

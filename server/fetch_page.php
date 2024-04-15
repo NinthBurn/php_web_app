@@ -88,9 +88,8 @@ if ($row_query_result->num_rows > 0) {
                 <td>' . date("d/M/Y", strtotime($log_date)) . '</td>
                 <td>' . $log_content . '</td>
                 <td>' . '<div style="display: flex; justify-content: space-evenly; width: 100%">'
-                . '<button style="width: 60px" type="button" onclick="deleteLog(' . $log_id . ')">Delete</button>'
+                . '<button style="width: 60px" type="button" onclick="onDeleteButtonClick(' . $log_id . ')">Delete</button>'
                 . '<button style="width: 60px" type="button" onclick="onEditButtonClick(' . $log_id . ')">Edit</button>'
-                // . '<div class="editButton"> <a href="edit_log_page.php">Edit</a></div>'
                  . '</div></td>
             </tr>
         ';

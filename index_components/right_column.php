@@ -48,7 +48,43 @@
 </div>
 
 <script>
-    function onEditButtonClick(identifier){
-        window.location.href = "edit_log_page.php?log_id=" + identifier;
+    function onDeleteButtonClick(identifier) {
+        let data = {
+            edit_log: identifier,
+        };
+
+        $.ajax({
+            url: '../server/log_edit.php',
+            type: 'post',
+            data: data,
+            success: function(response) {
+                response = response.replace(/(\r\n|\n|\r)/gm, "");
+
+                if (response == "is_owner") {
+                    if (confirm("Are you sure you want to delete this entry?") == true)
+                        deleteLog(identifier);
+                } else alert("You cannot delete a log you did not upload.");
+            }
+        })
+    }
+
+    function onEditButtonClick(identifier) {
+        let data = {
+            edit_log: identifier,
+        };
+
+        $.ajax({
+            url: '../server/log_edit.php',
+            type: 'post',
+            data: data,
+            success: function(response) {
+                response = response.replace(/(\r\n|\n|\r)/gm, "");
+
+                if (response == "is_owner")
+                    window.location.href = "edit_log_page.php?log_id=" + identifier;
+
+                else alert("You cannot edit a log you did not upload.");
+            }
+        })
     }
 </script>
