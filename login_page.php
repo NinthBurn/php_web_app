@@ -3,6 +3,7 @@ require "server/user_authentification.php";
 if(isset($_SESSION["user_id"])){
     header("Location: index.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,7 @@ if(isset($_SESSION["user_id"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.php">
     <title>Log Browser</title>
+    <script src="scripts/authentification_script.js" defer></script>
 </head>
 <body>
     <div class="loginPanel">
@@ -27,7 +29,7 @@ if(isset($_SESSION["user_id"])){
                 <input type="password" name="user_password" id="user_password" required /><br>
                 <br>
                 
-                <button type="button" onclick="submitData();">Login</button>
+                <button type="button" onclick="loginUser();">Login</button>
                 <br><br>
             </form>
             <div class="responseLabel"></div>
@@ -38,6 +40,5 @@ if(isset($_SESSION["user_id"])){
             Don't have an account? Register <a href="register_page.php">here</a>.
         </div>
     </div>
-    <?php require "scripts/script.php"?>
 </body>
 </html>

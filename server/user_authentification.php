@@ -1,8 +1,6 @@
 <?php
 session_start();
-
-// address / DB user name / DB password / DB name
-$connection = new mysqli("localhost", "root", "", "lab7") or die("Connection failed:" . mysqli_connect_error());
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 if (isset($_POST["action"])) {
     if ($_POST["action"] == "register")
@@ -22,34 +20,38 @@ function test_input($data)
 
 function registerUser()
 {
-    global $connection;
-
     $user_name = $_POST["user_name"];
     $user_password = $_POST["user_password"];
     $user_password_confirm = $_POST["user_password_confirm"];
     $user_email = $_POST["user_email"];
 
     if (empty($user_email) || empty($user_name) || empty($user_password)) {
-        echo "Empty field detected. Cannot register.";
+        $status["status"] = "Empty field detected. Cannot register.";
+        echo json_encode($status);
         exit;
     }
 
     if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format. ";
+        $status["status"] = "Invalid email format.";
+        echo json_encode($status);
         exit;
     }
 
     if ($user_password != $user_password_confirm) {
-        echo "Password fields are different. ";
+        $status["status"] = "Password fields are different.";
+        echo json_encode($status);
         exit;
     }
 
     $user_name = test_input($user_name);
 
     if (!preg_match("/^[a-zA-Z0-9-_]*$/", $user_name)) {
-        echo "Only letters, digits, and underlines are allowed. ";
+        $status["status"] = "Only letters, digits, and underlines are allowed.";
+        echo json_encode($status);
         exit;
     }
+
+    require "config.php";
 
     $sql_statement = $connection->prepare("SELECT COUNT(*) FROM Users WHERE user_name = (?)");
     $sql_statement->bind_param("s", $user_name);
@@ -58,7 +60,9 @@ function registerUser()
     $query_result = $sql_statement->get_result()->fetch_all()[0][0];
 
     if ($query_result > 0) {
-        echo "Username has been taken. ";
+        $status["status"] = "Username has been taken.";
+        echo json_encode($status);
+        $connection->close();
         exit;
     }
 
@@ -69,7 +73,9 @@ function registerUser()
     $query_result = $sql_statement->get_result()->fetch_all()[0][0];
 
     if ($query_result > 0) {
-        echo "Email is already used by another account. ";
+        $status["status"] = "Email is already used by another account.";
+        echo json_encode($status);
+        $connection->close();
         exit;
     }
 
@@ -78,24 +84,26 @@ function registerUser()
         $sql_statement->bind_param("sss", $user_name, $user_password, $user_email);
         $sql_statement->execute();
 
-        echo "User registered successfully.";
+        $connection->close();
+
+        $status["status"] = "User registered successfully.";
+        echo json_encode($status);
         exit;
     }
-
-    echo $result;
 }
 
 function loginUser()
 {
-    global $connection;
-
     $user_name = $_POST["user_name"];
     $user_password = $_POST["user_password"];
 
     if (empty($user_name) || empty($user_password)) {
-        echo "Empty field detected. Cannot login.";
+        $status["status"] = "Empty field detected. Cannot login.";
+        echo json_encode($status);
         exit;
     }
+
+    require "config.php";
 
     $sql_statement = $connection->prepare("SELECT * FROM Users WHERE user_name = (?)");
     $sql_statement->bind_param("s", $user_name);
@@ -110,9 +118,16 @@ function loginUser()
             $_SESSION["login"] = true;
             $_SESSION["user_id"] = $row["user_id"];
 
-            echo "Successfully logged in!";
+            $status["status"] = "Successfully logged in!";
+            echo json_encode($status);
         } else {
-            echo "Wrong password.";
+            $status["status"] = "Wrong password.";
+            echo json_encode($status);
         }
-    } else echo "User not found.";
+    } else {
+        $status["status"] = "User not found.";
+        echo json_encode($status);
+    }
+
+    $connection->close();
 }

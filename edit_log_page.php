@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-require "scripts/script.php";
-require "scripts/log_operations.php";
-$connection = new mysqli("localhost", "root", "", "lab7") or die("Connection failed:" . mysqli_connect_error());
+require "server/config.php";
 
 $id = $_GET['log_id'];
 $sql_statement = $connection->prepare("SELECT * FROM UserLogs WHERE log_id = (?) and user_id = (?)");
@@ -15,8 +13,8 @@ $query_result = $sql_statement->get_result();
 $row = $query_result->fetch_assoc();
 mysqli_close($connection);
 
-if(!$row)
-echo '<script>
+if (!$row)
+    echo '<script>
 window.location.href="index.php";
 alert("Cannot edit a log that was not uploaded by you.");
 </script>';
@@ -27,6 +25,7 @@ alert("Cannot edit a log that was not uploaded by you.");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log Browser</title>
     <link rel="stylesheet" href="styles/styles.php">
+    <script src="scripts/log_operations.js" defer></script>
 </head>
 
 <body>
@@ -77,15 +76,12 @@ alert("Cannot edit a log that was not uploaded by you.");
 
             </form>
 
-            <script>
-                $(document).ready(function() {
-                    $("#log_severity").val("<?= $row["log_severity"] ?>");
-                    $("#log_type").val("<?= $row["log_type"] ?>");
+            <script defer>
+                document.getElementById("log_severity").value = ("<?= $row["log_severity"] ?>");
+                document.getElementById("log_type").value = ("<?= $row["log_type"] ?>");
 
-                });
-
-                function returnToIndex(){
-                    window.location.href="index.php";
+                function returnToIndex() {
+                    window.location.href = "index.php";
                 }
             </script>
         </div>

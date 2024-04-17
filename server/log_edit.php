@@ -1,6 +1,8 @@
 <?php
 session_start();
-$connection = new mysqli("localhost", "root", "", "lab7") or die("Connection failed:" . mysqli_connect_error());
+require "config.php";
+
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 $sql_statement = $connection->prepare("SELECT * FROM UserLogs WHERE log_id = (?) and user_id = (?)");
 $sql_statement->bind_param("ss", $_POST["edit_log"], $_SESSION["user_id"]);
@@ -11,7 +13,11 @@ $query_result = $sql_statement->get_result();
 $row = $query_result->fetch_assoc();
 mysqli_close($connection);
 
+$status["status"] = "";
+
 if (!$row)
-    echo 'is_not_owner';
-else echo 'is_owner';
+    $status["status"] = 'is_not_owner';
+else $status["status"] = 'is_owner';
+
+echo json_encode($status);
 ?>

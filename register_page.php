@@ -11,7 +11,7 @@ if(isset($_SESSION["user_id"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles/styles.php">
-
+    <script src="scripts/authentification_script.js" defer></script>
 </head>
 <body>
     <div class="loginPanel">
@@ -37,7 +37,7 @@ if(isset($_SESSION["user_id"])){
                 <br>
                 
                 
-                <button type="button" onclick="submitData()">Register</button>
+                <button type="button" onclick="registerUser()">Register</button>
                 <br><br>
                 <div class="responseLabel"></div>
                 <br>
@@ -45,6 +45,5 @@ if(isset($_SESSION["user_id"])){
             
         </div>
     </div>
-    <?php require "scripts/script.php"?>
 </body>
 </html>
